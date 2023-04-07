@@ -9,4 +9,10 @@ public class ApplicationDbContext : IdentityDbContext
         : base(options)
     {
     }
+
+    public DbSet<Client> Clients => Set<Client>();
+    public DbSet<Order> Orders => Set<Order>();
+    public DbSet<Price> Prices => Set<Price>();
+    public DbSet<Product> Products => Set<Product>();
+    public DbSet<Subscription> Subscriptions => Set<Subscription>();
 }
