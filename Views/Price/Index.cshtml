@@ -1,0 +1,53 @@
+@using Microsoft.AspNetCore.Mvc.TagHelpers
+@model PriceIndexModel
+
+@{
+    ViewData["Title"] = "Index";
+    var productIdQueryParams = new Dictionary<string, string> { ["ProductId"] = Model.ProductId.ToString() };
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create" asp-all-route-data="@productIdQueryParams">Create New</a>
+</p>
+<table class="table">
+    <thead>
+    <tr>
+        <th>
+            Minimum Number of Users
+        </th>
+        <th>
+            Special Offer
+        </th>
+        <th>
+            Amount
+        </th>
+        <th></th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var item in Model.Prices)
+    {
+        <tr>
+            <td>
+                @item.MinimumNumberOfUsers
+            </td>
+            <td>
+                @item.SpecialOffer
+            </td>
+            <td>
+                @item.Amount
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>
+<div>
+    <a asp-controller="Product" asp-action="Index" asp-route-id="@Model.ProductId">Back to List</a>
+</div>
